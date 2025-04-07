@@ -1,0 +1,56 @@
+fun main() {
+     while (true) {
+         println(
+             """
+             |Menu:
+             |a. Somar vários números reais
+             |b. Gerar número aleatório entre X e Y
+             |c. Separar positivos e negativos
+             |d. Sair
+         """.trimMargin())
+ 
+         when (readln().lowercase()) {
+             "a" -> {
+                 println("Quantos números você quer somar?")
+                 val qtd = readln().toInt()
+                 var soma = 0.0
+                 repeat(qtd) {
+                     print("Digite um número: ")
+                     soma += readln().toDouble()
+                 }
+                 println("A soma total é: $soma")
+             }
+ 
+             "b" -> {
+                 print("Digite o valor de X: ")
+                 val x = readln().toInt()
+                 print("Digite o valor de Y: ")
+                 val y = readln().toInt()
+                 val aleatorio = (x..y).random()
+                 println("Número gerado: $aleatorio")
+             }
+ 
+             "c" -> {
+                 val positivos = mutableListOf<Int>()
+                 val negativos = mutableListOf<Int>()
+                 println("Digite números (0 para parar):")
+                 while (true) {
+                     val n = readln().toInt()
+                     if (n == 0) break
+                     if (n > 0) positivos.add(n) else negativos.add(n)
+                 }
+                 positivos.sort()
+                 negativos.sort()
+                 println("Positivos: $positivos")
+                 println("Negativos: $negativos")
+             }
+ 
+             "d" -> {
+                 println("Encerrando...")
+                 break
+             }
+ 
+             else -> println("Opção inválida.")
+         }
+     }
+ }
